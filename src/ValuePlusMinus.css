@@ -3,10 +3,22 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-
-.container {
+.main {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.inputContainer {
+    border-style: solid;
+    border-width: thin;
+    border-radius: 5px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+}
+
+.switchContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    align-content: center;
 }

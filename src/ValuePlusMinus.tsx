@@ -1,7 +1,8 @@
-import {Button, Switch, TextField} from "@material-ui/core";
+import {Button, TextField} from "@material-ui/core";
 import {Add, Remove} from "@material-ui/icons";
 import React from "react";
 import "./ValuePlusMinus.css";
+import {IOSSwitch} from "./components/IOSSwitch";
 
 type ValuePlusMinusProps = {
   value: number;
@@ -18,23 +19,26 @@ export const ValuePlusMinus: React.FC<ValuePlusMinusProps> = ({value, label, che
     setState({...state, [event.target.name]: event.target.checked});
   };
 
-  return <div className="container">
-      <div>{label}</div>
-      <Switch
+  return <div className="main">
+    <div className="switchContainer">
+      <span>{label}</span>
+      <IOSSwitch
         checked={state.checked}
         onChange={handleChange}
         name="checked"
         aria-label={label}
         inputProps={{'aria-label': 'secondary checkbox'}}
-        style={{marginLeft: "auto", alignSelf: "flex-end"}}
       />
-    <Button variant="contained" onClick={increment}><Add/></Button>
-    <TextField
-      id="standard-number"
-      type="number"
-      inputProps={{min: 0, style: {textAlign: 'center', color: "white"}}}
-      value={value}
-    />
-    <Button variant="contained" onClick={decrement}><Remove/></Button>
+    </div>
+    <div className="inputContainer">
+      <Button variant="contained" onClick={increment}><Add/></Button>
+      <TextField
+        id="standard-number"
+        type="number"
+        inputProps={{min: 0, style: {textAlign: 'center', color: "white"}}}
+        value={value}
+      />
+      <Button variant="contained" onClick={decrement}><Remove/></Button>
+    </div>
   </div>
 }
