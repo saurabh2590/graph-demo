@@ -23,10 +23,11 @@ export const LineChartDemo: React.FC<LineChartProps> = () => {
     {month: '12', value: 200, sell: 700, mustBuy: 260, neutral: 500, mustSell: 900, buy: 400},
     {month: '1', value: 278, sell: 700, mustBuy: 260, neutral: 500, mustSell: 900, buy: 400},
     {month: '2', value: 189, sell: 700, mustBuy: 260, neutral: 500, mustSell: 900, buy: 400},
-    {month: '3', value: 189, sell: 700, mustBuy: 260, neutral: 500, mustSell: 900, buy: 400},
-    {month: '4', value: 189, sell: 700, mustBuy: 260, neutral: 500, mustSell: 900, buy: 400},
-    {month: '5', value: 189, sell: 700, mustBuy: 260, neutral: 500, mustSell: 900, buy: 400},
-  ]
+    {month: '3', value: 195, sell: 700, mustBuy: 260, neutral: 500, mustSell: 900, buy: 400},
+    {month: '4', value: 400, sell: 700, mustBuy: 260, neutral: 500, mustSell: 900, buy: 400},
+    {month: '5', value: 300, sell: 700, mustBuy: 260, neutral: 500, mustSell: 900, buy: 400},
+  ];
+
   return (
     <div>
     <ResponsiveContainer height={400} width="100%">
@@ -35,8 +36,7 @@ export const LineChartDemo: React.FC<LineChartProps> = () => {
         {/*<CartesianGrid strokeDasharray="3 3"/>*/}
         <XAxis dataKey="month"/>
         <YAxis orientation="right"/>
-        <Tooltip/>
-        <Line type="linear" dataKey="value" stroke="#82ca9d" legendType="none"/>
+        <Line type="linear" name="Value" dataKey="value" stroke="#82ca9d" legendType="none"/>
         <Line type="linear" name={L_MUST_SELL} dataKey="mustSell" stroke={MUST_SELL} legendType="line" dot={false} strokeDasharray="5 5"/>
         <Line type="linear" name={L_SELL}dataKey="sell" stroke={SELL} legendType="line" dot={false} strokeDasharray="5 5"/>
         <Line type="linear" name={L_NEUTRAL} dataKey="neutral" stroke={NEUTRAL} legendType="line" dot={false} strokeDasharray="5 5"/>
