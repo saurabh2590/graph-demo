@@ -36,7 +36,21 @@ export const LineChartDemo: React.FC<LineChartProps> = () => {
         {/*<CartesianGrid strokeDasharray="3 3"/>*/}
         <XAxis dataKey="month"/>
         <YAxis orientation="right"/>
-        <Line type="linear" name="Value" dataKey="value" stroke="#82ca9d" legendType="none"/>
+        <defs>
+          <linearGradient id="colorUv" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="red" />
+            <stop offset="100%" stopColor="green" />
+          </linearGradient>
+          <linearGradient id="solids" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style={{stopColor: "rgb(255,0,0)", stopOpacity: 1}}/>
+            <stop offset="33%" style={{stopColor: "rgb(255,0,0)", stopOpacity: 1}}/>
+            <stop offset="33%" style={{stopColor: "rgb(0,255,0)", stopOpacity: 1}}/>
+            <stop offset="67%" style={{stopColor: "rgb(0,255,0)", stopOpacity: 1}} />
+            <stop offset="67%" style={{stopColor: "rgb(0,0,255)", stopOpacity: 1}}/>
+            <stop offset="100%" style={{stopColor: "rgb(0,0,255)", stopOpacity: 1}}/>
+          </linearGradient>
+        </defs>
+        <Line type="linear" name="Value" dataKey="value" stroke="url(#solids)" legendType="none"/>
         <Line type="linear" name={L_MUST_SELL} dataKey="mustSell" stroke={MUST_SELL} legendType="line" dot={false} strokeDasharray="5 5"/>
         <Line type="linear" name={L_SELL}dataKey="sell" stroke={SELL} legendType="line" dot={false} strokeDasharray="5 5"/>
         <Line type="linear" name={L_NEUTRAL} dataKey="neutral" stroke={NEUTRAL} legendType="line" dot={false} strokeDasharray="5 5"/>
