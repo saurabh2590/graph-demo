@@ -3,20 +3,26 @@ import {Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} fro
 import {ValuePlusMinus} from "./ValuePlusMinus";
 
 type LineChartProps = {}
+type ChartDataItem = {
+  month: String;
+  value: number; sell: number; mustBuy: number; neutral: number; mustSell: number; buy: number
+}
+const NEUTRAL = "#ffffff";
+const MUST_SELL = "#00ff00";
+const SELL = "#82ca9d";
+const BUY = "#FF6600";
+const MUST_BUY = "#ff0000";
+
+const L_MUST_SELL = "Must Sell";
+const L_SELL = "Sell";
+const L_NEUTRAL = "Neutral";
+const L_BUY = "Buy";
+const L_MUST_BUY = "Must Buy";
+
+
 export const LineChartDemo: React.FC<LineChartProps> = () => {
-  const NEUTRAL = "#ffffff";
-  const MUST_SELL = "#00ff00";
-  const SELL = "#82ca9d";
-  const BUY = "#FF6600";
-  const MUST_BUY = "#ff0000";
 
-  const L_MUST_SELL = "Must Sell";
-  const L_SELL = "Sell";
-  const L_NEUTRAL = "Neutral";
-  const L_BUY = "Buy";
-  const L_MUST_BUY = "Must Buy";
-
-  const data = [
+  const data: ChartDataItem[] = [
     {month: '9', value: 1000, sell: 700, mustBuy: 260, neutral: 500, mustSell: 900, buy: 400},
     {month: '10', value: 300, sell: 700, mustBuy: 260, neutral: 500, mustSell: 900, buy: 400},
     {month: '11', value: 280, sell: 700, mustBuy: 260, neutral: 500, mustSell: 900, buy: 400},
@@ -34,13 +40,7 @@ export const LineChartDemo: React.FC<LineChartProps> = () => {
       <LineChart data={data}
                  margin={{top: 10, right: 10, left: 10, bottom: 10}}>
         {/*<CartesianGrid strokeDasharray="3 3"/>*/}
-        <XAxis dataKey="month"/>
-        <YAxis orientation="right"/>
         <defs>
-          <linearGradient id="colorUv" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="red" />
-            <stop offset="100%" stopColor="green" />
-          </linearGradient>
           <linearGradient id="solids" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" style={{stopColor: "rgb(255,0,0)", stopOpacity: 1}}/>
             <stop offset="33%" style={{stopColor: "rgb(255,0,0)", stopOpacity: 1}}/>
@@ -50,6 +50,8 @@ export const LineChartDemo: React.FC<LineChartProps> = () => {
             <stop offset="100%" style={{stopColor: "rgb(0,0,255)", stopOpacity: 1}}/>
           </linearGradient>
         </defs>
+        <XAxis dataKey="month"/>
+        <YAxis orientation="right" domain={['dataMin - 50', 'dataMax + 50']} type="number" ticks={[200, 300, 400, 500, 600, 700, 800, 880, 950]}/>
         <Line type="linear" name="Value" dataKey="value" stroke="url(#solids)" legendType="none"/>
         <Line type="linear" name={L_MUST_SELL} dataKey="mustSell" stroke={MUST_SELL} legendType="line" dot={false} strokeDasharray="5 5"/>
         <Line type="linear" name={L_SELL}dataKey="sell" stroke={SELL} legendType="line" dot={false} strokeDasharray="5 5"/>
